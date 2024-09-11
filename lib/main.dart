@@ -51,6 +51,15 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       );
       setState(() {});
+      // Si la autenticación es exitosa, espera 5 segundos y navega a la pantalla de éxito
+      if (_isAuthenticated) {
+        Future.delayed(Duration(seconds: 5), () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SuccessScreen()),
+          );
+        });
+      }
     } catch (e) {
       print(e);
     }
@@ -62,6 +71,7 @@ class _AuthScreenState extends State<AuthScreen> {
       // Agregamos el AppBar para mostrar el título en la parte superior
       appBar: AppBar(
         title: Text('LuisMi App Login'),
+        foregroundColor: Colors.white,
         backgroundColor: Colors.blueAccent,
       ),
       body: Stack(
@@ -135,6 +145,26 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// Pantalla de éxito que se muestra después de la autenticación
+class SuccessScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueAccent,
+      body: Center(
+        child: Text(
+          'Autenticación Exitosa',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
