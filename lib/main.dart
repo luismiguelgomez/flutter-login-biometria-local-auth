@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+import 'view/add_contact.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,7 +42,7 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-  // Método para autenticar al usuario
+   // Método para autenticar al usuario
   Future<void> _authenticate() async {
     try {
       _isAuthenticated = await auth.authenticate(
@@ -51,14 +52,12 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       );
       setState(() {});
-      // Si la autenticación es exitosa, espera 5 segundos y navega a la pantalla de éxito
+      // Si la autenticación es exitosa, navega a la pantalla de NewContact
       if (_isAuthenticated) {
-        Future.delayed(Duration(seconds: 5), () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SuccessScreen()),
-          );
-        });
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => NewContact()),
+        );
       }
     } catch (e) {
       print(e);

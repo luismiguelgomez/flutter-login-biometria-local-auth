@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite:
+  logger: ^1.4.0
+  http: ^1.2.2  # Asegúrate de usar la última versión disponible
+  contact_card: ^0.0.5
+
 
   cupertino_icons: ^1.0.8
   
